@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var path = require('path');
-var pages = require('./controllers/pages');
 var api = require('./controllers/api');
 
 app.engine('html', require('ejs').renderFile);
