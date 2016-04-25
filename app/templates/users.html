@@ -4,6 +4,7 @@
 			<th>Name</th>
 			<th>Age</th>
 			<th>Email</th>
+			<th>Skill</th>
 			<th>Delete</th>
 			<th>Edit</th>
 		</tr>
@@ -17,11 +18,11 @@
 			</td>
 			<td>{{user.age}}</td>
 			<td>{{user.email}}</td>
+			<td>{{user.skills}}</td>
 		<td><button ng-click="delUser(user.name)" class="btn btn-danger">Del</button></td>
 		<td><button ng-click="editModal($index, user._id)" class="btn btn-warning">Edit</button></td>
 	</tr>
 </table>
-
 <form ng-show="userEdit" ng-submit="editUser(userIdEdit)">
 	Name: <input ng-model="userEdit.name">
 	Age: <input ng-model="userEdit.age">

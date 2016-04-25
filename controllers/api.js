@@ -8,8 +8,15 @@ var validator = require('validator');
 router.get('/users', function(req, res){
 	userService.getUsers(function(err, rows){
 		if (err) throw err;
-		res.json(rows)
-	})
+		res.json(rows);
+	});
+});
+
+router.get('/users/:userName/skills', function(req, res){
+	userService.getSkills(req.params.userName, function(err, rows){
+		if (err) throw err;
+		res.json(rows);
+	});
 });
 
 router.get('/users/:userName', function(req, res){
@@ -38,7 +45,7 @@ router.put('/users', function(req, res){
 });
 
 router.delete('/users/:userName', function(req, res){
-	userService.dellUser(req.params.userService, function(err) {
+	userService.dellUser(req.params.userName, function(err) {
 		if (err) throw err;
 		console.log("User "+req.params.userName+" dead");
 		res.send("user delete");

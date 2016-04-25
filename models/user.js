@@ -1,8 +1,6 @@
 "use strict";
 
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/test');
-
 var UserSchema = new mongoose.Schema( {
 	name: {
 		type: String,
@@ -17,8 +15,14 @@ var UserSchema = new mongoose.Schema( {
 		type: String,
 		unique: true,
 		required: true},
+	skills: [{
+		name: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Skill'
+		}
+	}]
 });
 
-var User = db.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
