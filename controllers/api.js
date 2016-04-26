@@ -3,7 +3,12 @@
 var express = require('express');
 var router = express.Router();
 var userService = require('../services/userService');
+var skillService = require('../services/skillService');
 var validator = require('validator');
+
+/**
+*  Work with users
+*/
 
 router.get('/users', function(req, res){
 	userService.getUsers(function(err, rows){
@@ -30,7 +35,7 @@ router.put('/users', function(req, res){
 	if (validator.isAlpha(req.body.name)){
 		if (validator.isEmail(req.body.email)){
 			if (validator.isNumeric(req.body.age)){
-				userService.addUser(req.body.name, req.body.age, req.body.email, function(err){
+				userService.addUser(req.body.name, req.body.age, req.body.email, req.body.skill, function(err){
 					if (err) throw err;
 					console.log("User saved");
 					res.send("User saved");
@@ -69,4 +74,29 @@ router.post('/users', function(req, res){
 	res.send("Incorrect name")
 });
 
+
+/**
+*  Work with skills
+*/
+router.get('/skills', function(req, res){
+	skillService.getSkills(function(err, rows){
+		if (err) throw err;
+		res.json(rows);
+	});
+});
+
+router.put('/skills', function(req, res){
+	skillService.addSkill(req.body.name, req.body.StackName, function(err){
+		if (err) throw err;
+		res.send("skill added")
+	});
+});
+
+router.delete('/skills/:skillName', function(req, res){
+	skillService.dellSkill(req.params.skillName, function(err) {
+		if (err) throw err;
+		console.log("Skill "+req.params.skillName+" dead");
+		res.send("skill delete");
+	});
+});
 module.exports = router;

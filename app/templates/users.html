@@ -30,11 +30,12 @@
 	<button type="submit" class="btn btn-primary">Save</button>
 </form>
 
-<button ng-click="modalAdd=!modalAdd" ng-init="modalAdd=false" ng-hide="userEdit" class="btn btn-default">Add user</button>
-
-<form  ng-show="modalAdd" ng-submit="addUser()">
+<button ng-click="modalAdd=!modalAdd" ng-init="modalAdd=false" ng-hide="userEdit" class="btn btn-default">Add user</button><br>
+<a href="#/skills">Таблица навыков</a>
+<form ng-show="modalAdd" ng-submit="addUser()">
 	Name: <input ng-model="user.name" required><br>
 	Age: <input ng-model="user.age" required><br>
 	Email: <input ng-model="user.email" required><br>
+	<select ng-model="user.skill" ng-options="b.name for b in skills"></select><br>
 	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
 </form>

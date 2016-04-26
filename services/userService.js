@@ -9,22 +9,16 @@ function getUserByName(name, callback){
 	User.find({name: name}, callback);
 }
 
-function addUser(name, age, email, callback){
-	var angularJS = Skill({
-		name: 'angularJS',
-		StackName: 'Front-end'
-	});
-	angularJS.save();
+function addUser(name, age, email, skill, callback){
 
 	var newUser = User({
 		name: name,
 		age: age,
 		email: email,
-		skills: [{name: angularJS._id
-		}]
+		skills: [skill._id]
 	});
 
-	newUser.save(callback);	
+	newUser.save(callback);
 }
 
 function dellUser(name, callback){
@@ -43,10 +37,8 @@ function editUser(id, name, age, email, callback){
 
 function getSkills(userName, callback){
 	User.findOne({name: userName})
-	.populate('skills.name')
-	.exec(function(err, skills){
-		console.log(skills);
-	})
+	.populate('skills')
+	.exec(callback)
 }
 
 module.exports = {

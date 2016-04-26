@@ -16,10 +16,8 @@ var UserSchema = new mongoose.Schema( {
 		unique: true,
 		required: true},
 	skills: [{
-		name: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Skill'
-		}
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Skill'
 	}]
 });
 

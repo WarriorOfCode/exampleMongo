@@ -7,6 +7,11 @@
 	function configuration($stateProvider, $urlRouterProvider) {
 		$stateProvider
 			.state('list', {
+				resolve:{
+					skillsObject: function($http){
+						return $http({method: 'GET', url: '/api/skills/'})
+					}
+				},
 				url: '/',
 				templateUrl: '/templates/users.html',
 				controller: 'UsersCtrl'
@@ -20,6 +25,16 @@
 				url: '/users/:name',
 				templateUrl: '/templates/user.html',
 				controller: 'UserCtrl'
+			})
+			.state('skills', {
+				resolve:{
+					skillsObject: function($http){
+						return $http({method: 'GET', url: '/api/skills/'})
+					}
+				},
+				url: '/skills',
+				templateUrl: '/templates/skills.html',
+				controller: 'SkillsCtrl'
 			})
 			$urlRouterProvider.otherwise('/');
 	}
