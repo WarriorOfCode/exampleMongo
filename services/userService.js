@@ -10,12 +10,17 @@ function getUserByName(name, callback){
 }
 
 function addUser(name, age, email, skill, callback){
+	var skillId = [];
 
+	for(var i = skill.length-1;i>-1;i--){
+		skillId.push(skill[i]._id)
+	}
+	
 	var newUser = User({
 		name: name,
 		age: age,
 		email: email,
-		skills: [skill._id]
+		skills: skillId
 	});
 
 	newUser.save(callback);

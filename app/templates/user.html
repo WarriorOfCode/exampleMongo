@@ -2,4 +2,6 @@
 <div>Age: {{user.age}} </div>
 <div>Email: {{user.email}} </div>
 <button ng-click="getSkills(user.name)">Skills</button>
-{{skills.skills}}
+<div ng-repeat="skill in userSkill.skills">
+	{{$index+1}}. {{skill.name}}
+</div>

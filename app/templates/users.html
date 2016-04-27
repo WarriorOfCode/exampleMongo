@@ -36,6 +36,6 @@
 	Name: <input ng-model="user.name" required><br>
 	Age: <input ng-model="user.age" required><br>
 	Email: <input ng-model="user.email" required><br>
-	<select ng-model="user.skill" ng-options="b.name for b in skills"></select><br>
+	<select ng-model="user.skill" ng-options="b.name for b in skills" multiple></select><br>
 	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
 </form>

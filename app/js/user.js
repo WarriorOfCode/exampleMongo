@@ -9,7 +9,7 @@ function UserCtrl($scope, $http, userObject) {
 	$scope.getSkills = function(name){
 		$http.get('/api/users/'+name+'/skills')
 		.success(function(data){
-			$scope.skills = data;
+			$scope.userSkill = data;
 		})
 		.error(function	(data){
 			console.log(data)
