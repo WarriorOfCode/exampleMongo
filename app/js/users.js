@@ -2,10 +2,9 @@
 	"use strict";
 	angular
 		.module('Mean')
-		.controller('UsersCtrl', ['$scope', '$http', 'skillsObject', UsersCtrl]);
+		.controller('UsersCtrl', ['$scope', '$http', UsersCtrl]);
 
-	function UsersCtrl($scope, $http, skillsObject) {
-		$scope.skills = skillsObject.data;
+	function UsersCtrl($scope, $http) {
 		function getUsers(){
 			$http.get('/api/users')
 			.success(function(data){

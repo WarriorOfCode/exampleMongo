@@ -10,22 +10,20 @@
 		</tr>
 	</thead>
 	<tr ng-repeat="user in users">
-		
-			<td>
-				<a href="#/users/{{user.name}}">
-					{{user.name}}
-				</a>
-			</td>
-			<td>{{user.age}}</td>
-			<td>{{user.email}}</td>
-			<td>{{user.skills}}</td>
+		<td>
+			<a href="#/users/{{user.name}}">
+				{{user.name}}
+			</a>
+		</td>
+		<td>{{user.age}}</td>
+		<td>{{user.email}}</td>
+		<td>{{user.skills}}</td>
 		<td><button ng-click="delUser(user.name)" class="btn btn-danger">Del</button></td>
 		<td><button ng-click="editModal($index, user._id)" class="btn btn-warning">Edit</button></td>
 	</tr>
 </table>
 <form ng-show="userEdit" ng-submit="editUser(userIdEdit)">
 	Name: <input ng-model="userEdit.name">
-	Age: <input ng-model="userEdit.age">
 	Email: <input ng-model="userEdit.email">
 	<button type="submit" class="btn btn-primary">Save</button>
 </form>
@@ -34,8 +32,6 @@
 <a href="#/skills">Таблица навыков</a>
 <form ng-show="modalAdd" ng-submit="addUser()">
 	Name: <input ng-model="user.name" required><br>
-	Age: <input ng-model="user.age" required><br>
 	Email: <input ng-model="user.email" required><br>
-	<select ng-model="user.skill" ng-options="b.name for b in skills" multiple></select><br>
 	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
 </form>

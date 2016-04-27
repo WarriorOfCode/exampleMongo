@@ -7,11 +7,6 @@
 	function configuration($stateProvider, $urlRouterProvider) {
 		$stateProvider
 			.state('list', {
-				resolve:{
-					skillsObject: function($http){
-						return $http({method: 'GET', url: '/api/skills/'})
-					}
-				},
 				url: '/',
 				templateUrl: '/templates/users.html',
 				controller: 'UsersCtrl'

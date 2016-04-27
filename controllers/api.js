@@ -32,21 +32,11 @@ router.get('/users/:userName', function(req, res){
 });
 
 router.put('/users', function(req, res){
-	if (validator.isAlpha(req.body.name)){
-		if (validator.isEmail(req.body.email)){
-			if (validator.isNumeric(req.body.age)){
-				userService.addUser(req.body.name, req.body.age, req.body.email, req.body.skill, function(err){
-					if (err) throw err;
-					console.log("User saved");
-					res.send("User saved");
-				})
-			} else
-				res.send("Incorrect age")
-		} else
-			res.send("Incorrect email")
-	} else 
-	res.send("Incorrect name")
-	
+	userService.addUser(req.body.name, req.body.email, function(err){
+		if (err) throw err;
+		console.log("User saved");
+		res.send("User saved");
+	});
 });
 
 router.delete('/users/:userName', function(req, res){
@@ -58,20 +48,11 @@ router.delete('/users/:userName', function(req, res){
 });
 
 router.post('/users', function(req, res){
-	if (validator.isAlpha(req.body.name)){
-		if (validator.isEmail(req.body.email)){
-			if (validator.isNumeric(req.body.age)){
-				userService.editUser(req.body._id, req.body.name, req.body.age, req.body.email, function(err){
-					if (err) throw err;
-					res.send("User saved");
-					console.log("User "+req.body.name+" changed")
-				})
-			} else
-				res.send("Incorrect age")
-		} else
-			res.send("Incorrect email")
-	} else 
-	res.send("Incorrect name")
+	userService.editUser(req.body._id, req.body.name, req.body.email, function(err){
+		if (err) throw err;
+		res.send("User saved");
+		console.log("User "+req.body.name+" changed")
+	});
 });
 
 
@@ -98,5 +79,9 @@ router.delete('/skills/:skillName', function(req, res){
 		console.log("Skill "+req.params.skillName+" dead");
 		res.send("skill delete");
 	});
+});
+
+router.put('/users/:userName/skills', function(req, res){
+	skillService.addUserSkill(req.params.userName, req.body.name, req.body.age, req.body.level)
 });
 module.exports = router;

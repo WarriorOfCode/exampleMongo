@@ -3,5 +3,13 @@
 <div>Email: {{user.email}} </div>
 <button ng-click="getSkills(user.name)">Skills</button>
 <div ng-repeat="skill in userSkill.skills">
-	{{$index+1}}. {{skill.name}}
+	{{$index+1}}. {{skill.skill.name}} {{skill.skill.StackName}} {{skill.years}} {{skill.level}}
 </div>
+{{userSkill}}
+<button ng-click="modalAdd=!modalAdd" ng-init="modalAdd=false" ng-hide="userEdit" class="btn btn-default">Add skill</button><br>
+<form ng-show="modalAdd" ng-submit="addSkill(user.name)">
+	Name: <input ng-model="skill.name" required><br>
+	Years: <input ng-model="skill.age" required><br>
+	Level: <input ng-model="skill.level" required><br>
+	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
+</form>

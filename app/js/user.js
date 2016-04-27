@@ -15,5 +15,14 @@ function UserCtrl($scope, $http, userObject) {
 			console.log(data)
 		})
 	}
+	$scope.addSkill = function(name){
+		$http.put('/api/users/'+name+'/skills', $scope.skill)
+		.success(function(data){
+			console.log(data)
+		})
+		.error(function(data){
+			console.log(data)
+		})
+	}
 }
 })();

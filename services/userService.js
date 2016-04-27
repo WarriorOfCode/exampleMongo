@@ -7,44 +7,42 @@ function getUsers (callback){
 
 function getUserByName(name, callback){
 	User.find({name: name}, callback);
-}
+};
 
-function addUser(name, age, email, skill, callback){
-	var skillId = [];
+function addUser(name, email, callback){
+/*	var skillId = [];
 
 	for(var i = skill.length-1;i>-1;i--){
 		skillId.push(skill[i]._id)
-	}
-	
+	}*/
+
 	var newUser = User({
 		name: name,
-		age: age,
-		email: email,
-		skills: skillId
+		email: email
+		/*skills: [{skill: skillId}]*/
 	});
 
 	newUser.save(callback);
-}
+};
 
 function dellUser(name, callback){
 	User.findOneAndRemove({ name: name}, callback);
-}
+};
 
-function editUser(id, name, age, email, callback){
+function editUser(id, name, email, callback){
 	User.findById(id, function(err, user){
 		user.name = name;
-		user.age = age;
 		user.email = email;
 
 		user.save(callback);
-	})
-}
+	});
+};
 
 function getSkills(userName, callback){
 	User.findOne({name: userName})
-	.populate('skills')
+	.populate('skills.skill')
 	.exec(callback)
-}
+};
 
 module.exports = {
 	getUsers: getUsers,
