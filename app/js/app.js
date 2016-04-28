@@ -15,6 +15,9 @@
 				resolve:{
 					userObject: function($http,  $stateParams){
 						return $http({method: 'GET', url: '/api/users/'+ $stateParams.name})
+					},
+					projectObject: function($http){
+						return $http({method: 'GET', url: '/api/projects/'})
 					}
 				},
 				url: '/users/:name',
@@ -30,6 +33,16 @@
 				url: '/skills',
 				templateUrl: '/templates/skills.html',
 				controller: 'SkillsCtrl'
+			})
+			.state('projects', {
+				resolve:{
+					projectObject: function($http){
+						return $http({method: 'GET', url: '/api/projects/'})
+					}
+				},
+				url: '/projects',
+				templateUrl: '/templates/projects.html',
+				controller: 'ProjectsCtrl'
 			})
 			$urlRouterProvider.otherwise('/');
 	}

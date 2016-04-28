@@ -1,0 +1,43 @@
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>customer</th>
+			<th>description</th>
+			<th>team</th>
+			<th>DBs</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="project in projects">
+		
+			<td>
+				{{project.date}}
+			</td>
+			<td>
+				{{project.customer}}
+			</td>
+			<td>
+				{{project.project}}
+			</td>
+			<td>
+				{{project.team}}
+			</td>
+			<td>
+				{{project.database}}
+			</td>
+		<td><button ng-click="delProject(project._id)" class="btn btn-danger">Del</button></td>
+		<td>{{project._id}}</td>
+	</tr>
+</table>
+
+<button ng-click="modalAdd=!modalAdd" ng-init="modalAdd=false" class="btn btn-default">Add project</button><br>
+
+<form  ng-show="modalAdd" ng-submit="addProject()">
+	date: <input ng-model="project.date" required><br>
+	customer: <input ng-model="project.customer" required><br>
+	description: <input ng-model="project.description" required><br>
+	team: <input ng-model="project.team" required><br>
+	Data base: <input ng-model="project.base" required><br>
+	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
+</form>

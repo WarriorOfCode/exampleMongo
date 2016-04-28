@@ -10,16 +10,10 @@ function getUserByName(name, callback){
 };
 
 function addUser(name, email, callback){
-/*	var skillId = [];
-
-	for(var i = skill.length-1;i>-1;i--){
-		skillId.push(skill[i]._id)
-	}*/
 
 	var newUser = User({
 		name: name,
 		email: email
-		/*skills: [{skill: skillId}]*/
 	});
 
 	newUser.save(callback);
@@ -44,11 +38,39 @@ function getSkills(userName, callback){
 	.exec(callback)
 };
 
+function addSchool(userName, place, speciality, degree, endYear, callback){
+	User.findOne({name: userName}, function(err, user){
+		if (err) throw err;
+		user.education.push({
+			place: place,
+			speciality: speciality,
+			degree: degree,
+			endYear: endYear
+		});
+
+		user.save(callback);
+	});
+};
+
+function addTrainging(userName, year, name, callback){
+	User.findOne({name: userName}, function(err, user){
+		if (err) throw err;
+		user.training.push({
+			year: year,
+			name: name
+		});
+
+		user.save(callback);
+	});
+};
+
 module.exports = {
 	getUsers: getUsers,
 	getUserByName: getUserByName,
 	addUser: addUser,
 	dellUser: dellUser,
 	editUser: editUser,
-	getSkills: getSkills
+	getSkills: getSkills,
+	addSchool: addSchool,
+	addTrainging: addTrainging
 }

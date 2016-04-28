@@ -4,12 +4,12 @@ var express = require('express');
 var router = express.Router();
 var userService = require('../services/userService');
 var skillService = require('../services/skillService');
+var projectService = require('../services/projectService');
 var validator = require('validator');
 
 /**
 *  Work with users
 */
-
 router.get('/users', function(req, res){
 	userService.getUsers(function(err, rows){
 		if (err) throw err;
@@ -55,6 +55,25 @@ router.post('/users', function(req, res){
 	});
 });
 
+/**
+*  Work with education
+*/
+router.put('/users/:userName/school', function(req, res){
+	userService.addSchool(req.params.userName, req.body.place, req.body.speciality, req.body.degree, req.body.endYear, function(err){
+		if (err) throw err;
+		res.send("education added");
+	});
+});
+
+/**
+*  Work with training
+*/
+router.put('/users/:userName/training', function(req, res){
+	userService.addTrainging(req.params.userName, req.body.year, req.body.name, function(err){
+		if (err) throw err;
+		res.send("training added");
+	});
+});
 
 /**
 *  Work with skills
@@ -82,6 +101,41 @@ router.delete('/skills/:skillName', function(req, res){
 });
 
 router.put('/users/:userName/skills', function(req, res){
-	skillService.addUserSkill(req.params.userName, req.body.name, req.body.age, req.body.level)
+	skillService.addUserSkill(req.params.userName, req.body.name, req.body.age, req.body.level, function(err){
+		if (err) throw err;
+		res.send("skill saved");
+	});
 });
+
+/**
+* Work with projects
+*/
+router.get('/projects', function(req, res){
+	projectService.getProjects(function(err, rows){
+		if (err) throw err;
+		res.json(rows);
+	});
+});
+
+router.put('/projects', function(req, res){
+	projectService.addProject(req.body.date, req.body.customer, req.body.description, req.body.team, req.body.base, function(err){
+		if (err) throw err;
+		res.send("project saved");
+	});
+});
+
+router.delete('/projects/:projectId', function(req, res){
+	projectService.dellProject(req.params.projectId, function(err){
+		if (err) throw err;
+		res.send("project deleted");
+	});
+});
+
+router.put('/users/:userName/projects', function(req, res){
+	projectService.addUserProject(req.params.userName, req.body.name, req.body.position, req.body.participation, req.body.tools, req.body.technologies, function(err){
+		if (err) throw err;
+		res.send("project saved");
+	});
+});
+
 module.exports = router;

@@ -63,7 +63,7 @@ var UserSchema = new mongoose.Schema( {
 		tools:{
 			type: String
 		},
-		Technologies:{
+		technologies:{
 			type: String
 		}
 	}]

@@ -1,15 +1,39 @@
 <div>Name: {{user.name}} </div>
 <div>Age: {{user.age}} </div>
 <div>Email: {{user.email}} </div>
-<button ng-click="getSkills(user.name)">Skills</button>
+<button ng-click="getSkills(user.name)">Information</button><br>
 <div ng-repeat="skill in userSkill.skills">
 	{{$index+1}}. {{skill.skill.name}} {{skill.skill.StackName}} {{skill.years}} {{skill.level}}
 </div>
 {{userSkill}}
 <button ng-click="modalAdd=!modalAdd" ng-init="modalAdd=false" ng-hide="userEdit" class="btn btn-default">Add skill</button><br>
+<button ng-click="modalTran=!modalTran" ng-init="modalTran=false" class="btn btn-default">Add training</button><br>
 <form ng-show="modalAdd" ng-submit="addSkill(user.name)">
 	Name: <input ng-model="skill.name" required><br>
 	Years: <input ng-model="skill.age" required><br>
 	Level: <input ng-model="skill.level" required><br>
 	<button type="submit" class="btn btn-primary" ng-click="modalAdd=false">Добавить</button>
+</form>
+<button ng-click="modalProject=!modalProject" ng-init="modalProject=false" class="btn btn-default" ng-show="false">Add project</button><br>
+<form ng-show="modalProject" ng-submit="addProject(user.name)">
+	Project: <select ng-model="project.name" ng-options="b.project for b in projects"></select><br>
+	position: <input type="text" ng-model="project.position" required><br>
+	participation: <input type="text" ng-model="project.participation" required><br>
+	tools: <input type="text" ng-model="project.tools" required><br>
+	technologies: <input type="text" ng-model="project.technologies" required>
+	<button type="submit" class="btn btn-primary" ng-click="modalProject=false">Добавить</button>
+</form>
+<button ng-click="modalShool=!modalShool" ng-init="modalShool=false" class="btn btn-default" ng-show="false">Add sholl</button><br>
+<form ng-show="modalShool" ng-submit="addShool(user.name)">
+	Place: <input type="text" ng-model="school.place" required><br>
+	speciality: <input type="text" ng-model="school.speciality" required><br>
+	degree: <input type="text" ng-model="school.degree" required><br>
+	endYear: <input type="text" ng-model="school.endYear" required><br>
+	<button type="submit" class="btn btn-primary" ng-click="modalShool=false">Добавить</button>
+</form>
+<!-- plaaace for button -->
+<form ng-show="modalTran" ng-submit="addTraining(user.name)">
+	year: <input type="text" ng-model="training.year" required><br>
+	name: <input type="text" ng-model="training.name" required><br>
+	<button type="submit" class="btn btn-primary" ng-click="modalTran=false">Добавить</button>
 </form>

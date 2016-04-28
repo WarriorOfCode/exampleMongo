@@ -26,21 +26,17 @@ function addUserSkill(userName, skillName, age, level, callback){
 		if (err) throw err;
 		User.findOne({name: userName}, function(err, user){
 			if (err) throw err;
-			console.log(user)
-		})
-
-	/*	var skillId = [];
-
-	for(var i = skill.length-1;i>-1;i--){
-		skillId.push(skill[i]._id)
-	}*/
-
-
-		/*skills: [{skill: skillId}]*/
-
-	newUser.save(callback);
+			user.skills.push({
+				skill: skill._id,
+				years: age,
+				level: level
+			});
+			user.save(callback);
+		});
 	});
-}
+};
+
+
 
 module.exports = {
 	getSkills: getSkills,

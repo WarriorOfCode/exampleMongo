@@ -1,14 +1,22 @@
 "use strict";
 
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/test');
 
-var ProjectSchema = new mongoose.Schema( {
+var ProjectSchema = new mongoose.Schema({
 	date: {
 		type: String,
 	},
-	StackName: {
+	customer: {
 		type: String,
+	},
+	project: {
+		type: String
+	},
+	team: {
+		type: String
+	},
+	database: {
+		type: String
 	}
 });
 
